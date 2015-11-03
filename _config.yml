@@ -74,9 +74,9 @@ events:
   - image: "/img/career/b.jpg"
     date: "May 2012 - Today"
     description: "Do some Demon work"
-  - image: "/img/career/baracktocat.jpg"
+  - image: "/img/career/c.png"
     date: "September 2010 - April 2012"
-    description: "beep beep"
+    description: "beep beep at E"
 
 # First image of the Career timeline
 career-img: "/img/career/a.jpg"
