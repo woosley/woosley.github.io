@@ -46,8 +46,12 @@ type-speed:	10		# Default 10
 start-delay: 200	# Default 200
 delete-delay: 5000	# Default 5000
 lines:			# You can add HTML Tags in the Text
-  - text: "The lower you fall, the higher you'll fly."
-  - text: "Where’s your will to be weird?"
+  - text: "怎么说呢或者说从何开始呢，少年时我曾游历四方，那个骑马的少年是我，你
+    看见的，在南方绵延起伏的丘陵地带，那个骑马的游历少年是我，或许你曾目睹过
+    无数个这样行色匆匆的少年，那也是我，我是无数的亦是唯一的。不知你是否注意
+    到少年在你的视线里只出现一次。我在你的记忆里只存活一次，随后便不知所终。
+    所以紧随他的踪迹吧。"
+  - text: "keep weird"
 
 ########
 # Blog #
