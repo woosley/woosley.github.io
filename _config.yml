@@ -71,7 +71,7 @@ disqus-shortname: "panossakkos"
 ###############
 
 events:
-  - image: "/img/career/spidertocat.png"
+  - image: "/img/career/b.jpg"
     date: "May 2012 - Today"
     description: "Do some Demon work"
   - image: "/img/career/baracktocat.jpg"
