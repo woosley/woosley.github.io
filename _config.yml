@@ -1,7 +1,7 @@
 
 # Site settings
 
-url: "https://panossakkos.github.io"
+url: "https://woosley.github.io"
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (https://yourusername.github.io/repository-name)
@@ -20,12 +20,12 @@ force-https: True
 # HTML Head #
 #############
 
-author: "John Smith"
-lang: "en"
-title: "{ John Smith }"
+author: "Woosley Xu"
+lang: "cn"
+title: "{ Woosley Xu }"
 favicon: "/img/favicon.ico"
-description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
-keywords: "smith, jones, personal, jekyll, theme"
+description: "Blog and website of Woosley, blogging mainly for tech. Opinions expressed are mine."
+keywords: "Woosley, personal, jekyll, theme"
 
 ################
 # Intro layout #
