@@ -32,7 +32,7 @@ keywords: "Woosley, personal, jekyll"
 
 black-favicon: "/img/black-lab-glass.ico"
 background-img: "../img/intro-bg.jpg"
-me-img: "/img/me.jpg"
+me-img: "/img/me.png"
 
 ##############################
 # Dynamic Text on the header #
