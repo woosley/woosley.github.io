@@ -23,8 +23,8 @@ author: "Woosley Xu"
 lang: "cn"
 title: "{ Woosley Xu }"
 favicon: "/img/favicon.ico"
-description: "Blog and website of Woosley, blogging mainly for tech. Opinions expressed are mine."
-keywords: "Woosley, personal, jekyll, theme"
+description: "Blog and website of Woosley."
+keywords: "Woosley, personal, jekyll"
 
 ################
 # Intro layout #
@@ -88,14 +88,10 @@ email: "your@email.here"
 ##################
 
 social:
-  - title: "facebook"
-    url: "https://facebook.com/"
   - title: "twitter"
-    url: "https://twitter.com/"
-  - title: "youtube"
-    url: "https://youtube.com/"
+    url: "https://twitter.com/redicaps"
   - title: "github"
-    url: "https://github.com/PanosSakkos/personal-jekyll-theme"
+    url: "https://github.com/woosley"
   - title: "rss"
     url: "/feed.xml"
 
