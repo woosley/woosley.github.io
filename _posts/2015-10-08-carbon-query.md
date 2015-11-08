@@ -17,15 +17,15 @@ metrics 数据。
 Cache instance 上面。[Carbonate](https://github.com/jssjr/carbonate) 项目提供了
 对应的工具，安装后脚本为 `carbon-lookup`，用法如下。
 
-```shell
+{% highlight shell %}
 # carbon-lookup servers.ash.ash0012.Network.eth0.UnicastPktsOut
 # ash0013:2204:3
-```
+{% endhighlight %}
 
 Carbonate 并没有相关的工具用来查询内存里保存的数据，于是我翻看了一下 Graphite
-的源码，照着写了一个脚本，姑且称之为 carbon-query
+的源码，照着写了一个脚本，姑且称之为 `carbon-query`
 
-```
+{% highlight python %}
 import sys
 import socket
 import pickle
@@ -57,11 +57,11 @@ for h in hosts:
         body_size = struct.unpack("!L", len_prefix)[0]
         body = recv_exactly(conn, body_size)
         print h, p, pickle.loads(body)
-```
+{% endhighlight %}
 
 脚本运行示例如下
 
-```shell
+{% highlight shell %}
 [root@mypc~]# python2.7 carbon-query.py servers.ash.ash0012.Network.eth0.UnicastPktsOut
 ash0003 7201 {'datapoints': []}
 ash0003 7202 {'datapoints': []}
@@ -83,7 +83,7 @@ ash0013 7207 {'datapoints': []}
 ash0013 7208 {'datapoints': []}
 ash0013 7209 {'datapoints': []}
 ash0013 7210 {'datapoints': []}
-```
+{% endhighlight %}
 
 结果表明对应 metrics 正确的发送到了相应的 Carbon Cache，cluster 的配置没有问题。
 
