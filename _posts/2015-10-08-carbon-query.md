@@ -25,7 +25,7 @@ Cache instance 上面。[Carbonate](https://github.com/jssjr/carbonate) 项目�
 Carbonate 并没有相关的工具用来查询内存里保存的数据，于是我翻看了一下 Graphite
 的源码，照着写了一个脚本，姑且称之为 carbon-query
 
-```python
+```
 import sys
 import socket
 import pickle
