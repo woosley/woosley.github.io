@@ -17,7 +17,7 @@ metrics 数据。
 Cache instance 上面。[Carbonate](https://github.com/jssjr/carbonate) 项目提供了
 对应的工具，安装后脚本为 `carbon-lookup`，用法如下。
 
-{% highlight shell %}
+{% highlight bash %}
 # carbon-lookup servers.ash.ash0012.Network.eth0.UnicastPktsOut
 # ash0013:2204:3
 {% endhighlight %}
@@ -61,7 +61,7 @@ for h in hosts:
 
 脚本运行示例如下
 
-{% highlight shell %}
+{% highlight bash %}
 [root@mypc~]# python2.7 carbon-query.py servers.ash.ash0012.Network.eth0.UnicastPktsOut
 ash0003 7201 {'datapoints': []}
 ash0003 7202 {'datapoints': []}
