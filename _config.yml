@@ -10,6 +10,7 @@ url: "https://woosley.github.io"
 
 
 google-tracking-id: "UA-35880426-4"
+markdown: kramdown
 highlighter: pygements
 
 # Forces https everywhere in your website, except when you serve it locally
