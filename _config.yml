@@ -10,6 +10,7 @@ url: "https://woosley.github.io"
 
 
 google-tracking-id: "UA-35880426-4"
+highlighter: pygements
 
 # Forces https everywhere in your website, except when you serve it locally
 
@@ -57,7 +58,7 @@ lines:			# You can add HTML Tags in the Text
 # Blog #
 ########
 
-post-preview-words: 96
+post-preview-words: 30
 
 paginate: 5
 
