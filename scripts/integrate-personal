@@ -11,7 +11,7 @@ repoFiles = [ 'feed.xml', 'manifest.json', 'sitemap.xml' ]
 
 # Delete local resources of { Personal }
 repoDirectories.each{ |directory| FileUtils.rm_rf(directory) }
-#repoFiles.each{ |file| puts file; FileUtils.rm(file) }
+repoFiles.each{ |file| FileUtils.rm(file) }
 puts '[+] Deleted local { Personal } resources'
 
 # Create the { Personal } directories again
