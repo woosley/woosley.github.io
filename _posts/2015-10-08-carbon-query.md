@@ -26,6 +26,7 @@ Carbonate 并没有相关的工具用来查询内存里保存的数据，于是�
 的源码，照着写了一个脚本，姑且称之为 `carbon-query`
 
 {% highlight python %}
+
 import sys
 import socket
 import pickle
@@ -57,6 +58,7 @@ for h in hosts:
         body_size = struct.unpack("!L", len_prefix)[0]
         body = recv_exactly(conn, body_size)
         print h, p, pickle.loads(body)
+        
 {% endhighlight %}
 
 脚本运行示例如下
