@@ -23,7 +23,7 @@
             </small>
           </h4>
 
-          {{ page.content | markdownify }}
+          {{ page.content | liquify | markdownify }}
 
           {% include share.html %}
 
