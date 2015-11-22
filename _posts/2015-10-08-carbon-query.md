@@ -27,7 +27,6 @@ Carbonate 并没有相关的工具用来查询内存里保存的数据，于是�
 的源码，照着写了一个脚本，姑且称之为 `carbon-query`
 
 <pre><code data-trim class="python">
-
 import sys
 import socket
 import pickle
@@ -63,7 +62,7 @@ for h in hosts:
 
 脚本运行示例如下
 
-{% highlight bash %}
+<pre><code data-trim class="bash">
 [root@mypc~]# python2.7 carbon-query.py servers.ash.ash0012.Network.eth0.UnicastPktsOut
 ash0003 7201 {'datapoints': []}
 ash0003 7202 {'datapoints': []}
@@ -85,7 +84,7 @@ ash0013 7207 {'datapoints': []}
 ash0013 7208 {'datapoints': []}
 ash0013 7209 {'datapoints': []}
 ash0013 7210 {'datapoints': []}
-{% endhighlight %}
+</code></pre>
 
 结果表明对应 metrics 正确的发送到了相应的 Carbon Cache，cluster 的配置没有问题。
 
