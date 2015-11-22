@@ -5,6 +5,7 @@ title: 使用 Carbon Query 查询 Graphite Carbon Cache 内存数据
 tags: ['graphite', 'carbon']
 ---
 
+
 最近有同事反映搭建的 [Graphite](https://github.com/graphite-project) Cluster 上
 数据上报有明显的延时，当前时间的数据大约要两个小时之后才能出现。
 
