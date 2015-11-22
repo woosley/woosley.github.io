@@ -6,13 +6,13 @@
 
   {% include head.html %}
 
-  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <body>
 
     {% include navigation.html %}
 
-    <section id="{{ page.title }}" class="container content-section">
+    <section id="post" class="container content-section text-left">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
 
           <h1><strong>{{ page.title }}</strong></h1>
           <h4><strong>{{ page.date | date_to_string }}</strong>
@@ -23,20 +23,14 @@
             </small>
           </h4>
 
-          {{ page.content | liquify | markdownify }}
+          {{ page.content | markdownify }}
 
           {% include share.html %}
 
           {% include comments.html %}
 
-        </div>
-      </div>
-    </section>
-
-    <section id="{{ page.title }}" class="container content-section text-left">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
           {% include social-buttons.html %}
+
         </div>
       </div>
     </section>
