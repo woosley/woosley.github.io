@@ -45,7 +45,11 @@ net.ipv4.tcp_keepalive_intvl = 75
 之后仔细研究了一下keepalive的相关[文档](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html)。发现和我原来想的有点不一样.
 
 <pre>
-Remember that keepalive support, even if configured in the kernel, is not the default behavior in Linux. Programs must request keepalive control for their sockets using the setsockopt interface. There are relatively few programs implementing keepalive, but you can easily add keepalive support for most of them following the instructions explained later in this document. 
+Remember that keepalive support, even if configured in the kernel, is not the
+default behavior in Linux. Programs must request keepalive control for their
+sockets using the setsockopt interface. There are relatively few programs
+implementing keepalive, but you can easily add keepalive support for most of
+them following the instructions explained later in this document. 
 </pre>
 
 也就是说即使linux配置了相关的keepalive选项。一个应用程序需要显示的调用`setsockopt`才能真正的开启keepalive支持。而这个选项在`requests`里面并没有默认开启。http的keepalive支持不过是在header里面加上一个参数`Connection': 'keep-alive'`用来告诉服务器不要主动关闭连接.
