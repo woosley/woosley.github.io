@@ -91,8 +91,74 @@ MAN BITES DOG 不属于此文法
  	<sentence> ::= X | Y | X <sentence>
  	```
  	
- 	是一个或者多个X，其后为一个X或者Y的语法。
+ 	是一个或者多个X，其后为一个X或者Y的文法。
  	
  	```
- 	<>
+ 	<sentence> ::= X | Y | <sentence> X
  	```
+ 	
+ 	是一个X或者Y开头，其后跟多个X的文法。
+ 	
+ 	- 这是一个X列表，并以；结尾的文法
+ 	
+ 	```
+ 	<sentence> ::= <listx> ";"
+ 	<listx> ::= X | X <listx>
+ 	```
+ 	
+ 	- 现在我们可以将这些组合起来，形成一个“以；结尾的X句子”的列表
+ 	
+ 	```
+ 	<sentence> ::= <list> | <sentence> <list>
+ 	<list> ::= <listx>
+ 	<listx> ::= X | X <listx>
+ 	```
+ 	
+ 	- 这是一个没有结尾；号但是有逗号分割的语言
+ 	
+ 	```
+ 	<listx> ::= X | X "," <listx>
+ 	```
+ 	 	
+ 	- 这是一个每个X后都有一个；的语言
+ 	
+ 	有时候你必须问自己这是一个终止定界符还是一个分隔定界符
+
+
+ 	```
+ 	<listx> ::= X ";" | X ";" <listx>
+ 	```
+ 	再次比较分隔符的情形，每个X都被分隔开来。
+ 	
+ 	```
+ 	<listx> ::= X | X "," <listx>
+ 	```
+ 	
+ 	- 由 X, Y, Z 组成的参数列表
+ 	
+ 	```
+ 	<arglist> ::= "(" ")" | "(" <varlist> ")"
+ 	<varlist> ::= <var> | <varlist> "," <var>
+ 	<var> ::= X | Y | Z
+ 	```
+ 	
+ 	- 简单的类型定义
+ 	这是一个简单地类C语言类型定义语句的文法。它很具有层次感
+ 	
+ 	```
+ 	<tdecl> ::= <type> <varlist> ";"
+ 	<varlist> ::= <var> | <varlist> "," <var>
+ 	<var> ::= X | Y |Z
+ 	<type> ::= int | bool| string
+ 	```
+ 	
+ 	- 包含关键字Static的类型文法
+ 	
+ 	```
+ 	<tdec> ::= <type> <varlist> ";"
+ 	<varlist> ::= <var> | <varlist> "," <var>
+ 	<var> ::= X | Y |Z
+ 	<type> ::= static <basictype> | <basictype>
+ 	<basictype> ::= int | bool | string
+ 	```
+ 	
