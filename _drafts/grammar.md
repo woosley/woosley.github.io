@@ -226,12 +226,91 @@ MAN BITES DOG 不属于此文法
 
 考虑如下两个简单地文法
 
+```
+<exp> ::= <exp> + <pound> | <exp> - <pound> | <mul>
+<mul> ::= <mul> * <var> | <mul> / <var> | <var>
+<var> ::= X | Y |Z
+```
+
+和
 
 ```
-a
+<exp> ::= <exp> + <pound> | <exp> - <pound> 
+<mul> ::= <mul> * <var> | <mul> / <var> 
+<var> ::= X | Y |Z
 ```
 
+第二个文法砍死合理，但是等等...，由于右边都包含有<exp>，你怎样将它消除呢？这意
+味着你永远无法生成没有包含<exp>的句子。第一个文法无效的原因是右边所有的选项都包
+含有左边导致production `inescapable`
+
+#### 模糊性
+
+对语言中句子的处理来获得它的含义，一般使用解析树。解析树是一种理解句子的意思和
+结构的方法。如果对于语法G，其对于语言中存在有多个解析树的句子，那么G就是模糊的
+。证明这一点你只需要一个例子就可以了。注意有模糊性的是文法，而不是语言。同时注
+意由于使用模糊文法，一个句子有多个解析是可以的。
+
 ```
-b
+<sentence> ::= X | <sentence> X | X <sentence>
+```
+
+这个文法就是模糊的，因为存在具有多个解析树的句子。比如：XX有两个不同的解析树。
+
+<img src='http://marvin.cs.uidaho.edu/Teaching/CS445/ambiguousL.png'>
+
+
+这是同一语言的另外一种模糊法。
+
+```
+<sentence> ::= X | <sentence> <sentence>
+```
+
+试试使用上面的文法解析句子**XXX**。你能找到两个解析树吗？解决这个问题只需要：
+
+```
+<sentence> ::= X | <sentence> X
+```
+
+这是另一个非常相似的模糊文法的例子：
+
+```
+<binary-string> ::= 0 | 1 | <binary-string> <binary-string>
+```
+
+这是修复方法
+
+```
+<binary-string> ::= 0 <binary-string> | 1 <binary-string> | 0 | 1
+```
+
+模糊性会影响文法的含义:
+
+```
+<sentence> ::= <expression>
+<expression> ::= <expression> + <expression> |
+                 <expression> * <expression> | 
+                 <identifier>
+                 
+<identifier> ::= X | Y | Z
+```
+
+此语言中有以下句子
+
+```
+X
+X + Y
+X + Y * Z
+```
+
+头两个句子都没什么问题，但是 `X + Y * Z`有多个解析树。我们通过深度优先遍历解析
+树来提取其结构的时候，我们希望先进行乘法。怎样做到这一点呢？我们需要控制操作符
+的优先级。这里我们修改这个模糊的语法，在加法之前进行乘法
+
+```
+<sentence> ::= <expression>
+<expression> ::= <term> | <expression> + <expression>
+<term> ::= <identifier> | <term> * <term>
+<identifier> ::= X | Y | Z
 ```
 
