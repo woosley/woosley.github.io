@@ -91,12 +91,16 @@ disqus-shortname: "woosleygithubio"
 ###############
 
 events:
+
+  - image: "/img/career/d.png"
+    date: "May 2017 - Today" 
+    description: " not very sure about what is going on"
   - image: "/img/career/b.jpg"
-    date: "May 2012 - Today"
-    description: "Do some Demon work"
+    date: "May 2012 - May 2016"
+    description: "Do some demon work"
   - image: "/img/career/c.png"
     date: "September 2010 - April 2012"
-    description: "beep beep at E"
+    description: "beep beep at Ericsson"
 
 # First image of the Career timeline
 career-img: "/img/career/a.jpg"
