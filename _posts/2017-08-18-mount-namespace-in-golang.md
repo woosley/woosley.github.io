@@ -126,10 +126,9 @@ command ended
 
 假如我们注释掉
 
-<pre><code data-trim class="go">
-	if err := syscall.Mount("", "/", "", uintptr(defaultMountFlags|syscall.MS_PRIVATE|syscall.MS_REC), ""); err != nil {
+<pre><code data-trim class="go">if err := syscall.Mount("", "/", "", uintptr(defaultMountFlags|syscall.MS_PRIVATE|syscall.MS_REC), ""); err != nil {
     ...
-    }
+}
 </code></pre>
 
 在 centos7 上，命令退出后会出现问题
