@@ -174,3 +174,7 @@ mdstat   mounts   partitions    slabinfo  sys            timer_stats vmallocinfo
 - `MS_UNBINDABLE`: 除了不发送和接受 mount 事件之外，这个类型的还不能被 `mount --bind` 
 
 而`systemd`将默认的 mount namespace 的事件传播机制定义成了 `MS_SHARED`。这样`container`中的`mount`事件被系统接收，从而覆盖了系统本身自己的`proc`目录，而在进程退出之后，仅有的一个 pid 1 目录也被删除，在 proc 下面就没有了任何 pid 目录。
+
+这里可以做一个简单的动手，主要参考了 `https://lwn.net/Articles/689856/`
+
+
