@@ -177,4 +177,96 @@ mdstat   mounts   partitions    slabinfo  sys            timer_stats vmallocinfo
 
 这里可以做一个简单的动手，主要参考了 `https://lwn.net/Articles/689856/`
 
+- 使用 findmnt 可以查看当前 mountpoint 的传播机制。
 
+<pre><code data-trim">[root@localhost ~]# findmnt -o TARGET,PROPAGATION /
+TARGET PROPAGATION
+/      shared
+</code></pre>
+
+- 使用`mount --make-private`将其设为private
+
+<pre><code data-trim">[root@localhost ~]# mount --make-private  /
+[root@localhost ~]# findmnt -o TARGET,PROPAGATION /
+TARGET PROPAGATION
+/      private
+</code></pre>
+
+- 创建两个`shared`的 mountpoint
+ 
+<pre><code data-trim">[root@localhost ~]# mount --make-shared /dev/mapper/centos-home  /x
+[root@localhost ~]# mount --make-shared /dev/mapper/centos-root  /y
+[root@localhost ~]# findmnt -oTARGET,PROPAGaTION /x
+TARGET PROPAGATION
+/x     shared
+[root@localhost ~]# findmnt -oTARGET,PROPAGaTION /y
+TARGET PROPAGATION
+/y     shared
+</code></pre>
+
+- 打开一个新的shell， 创建一个新的`mount namespace`
+
+<pre><code data-trim">[root@localhost ~]# unshare -m --propagation unchanged sh
+sh-4.2# mount
+....
+/dev/mapper/centos-home on /x type xfs (rw,relatime,attr2,inode64,noquota)
+/dev/mapper/centos-root on /y type xfs (rw,relatime,attr2,inode64,noquota)
+</code></pre>
+
+此时可以看到新的namespace下继承了父namespace所有的 mountpoint
+
+- 在初始的 shell 下运行以下命令
+ 
+<pre><code data-trim">[root@localhost ~]# mount |grep /z
+/dev/mapper/centos-home on /z type xfs (rw,relatime,attr2,inode64,noquota)
+</code></pre>
+
+此时在第二个 shell 下面，不能够看到 `/z`这个挂载点
+
+<pre><code data-trim">sh-4.2# mount |grep /z
+sh-4.2#
+</code></pre>
+
+这里形成了如下的 `peer group`
+<img src="img/peer.png">
+
+- 在第一个shell中尝试 mount proc
+
+<pre><code data-trim">
+[root@localhost ~]# mkdir /z/foo
+[root@localhost ~]# mount -t proc proc /z/foo/
+[root@localhost ~]# ls /x/foo/
+1   16  253   264   270   2948  3 ...
+</code></pre>
+
+可以看到 /x 和 /z 共享 mount 事件
+
+- 在第二个 shell 下查看 /z /x
+
+<pre><code data-trim">
+sh-4.2# ls /z/
+sh-4.2# ls /x/foo
+1   16  253   264   27 ...
+</code></pre>
+
+可见 /x 的 mount 事件传递到了不同的 namespace，而 /z 的没有。
+
+- `/proc/self/mountinfo`可以查看`peer group`的信息，分别在两个 shell 下运行如下
+  命令
+  
+<pre><code data-trim">
+[root@localhost ~]# cat /proc/self/mountinfo |egrep '/x|/y|/z'
+79 58 253:2 / /x rw,relatime shared:1 - xfs /dev/mapper/centos-home rw,attr2,inode64,noquota
+80 58 253:0 / /y rw,relatime shared:32 - xfs /dev/mapper/centos-root rw,attr2,inode64,noquota
+115 58 253:2 / /z rw,relatime shared:1 - xfs /dev/mapper/centos-home rw,attr2,inode64,noquota
+116 115 0:3 / /z/foo rw,relatime shared:33 - proc proc rw
+118 79 0:3 / /x/foo rw,relatime shared:33 - proc proc rw
+</code></pre>
+
+<pre><code data-trim"> sh-4.2# cat /proc/self/mountinfo |egrep '/x|/y|/z'
+113 82 253:2 / /x rw,relatime shared:1 - xfs /dev/mapper/centos-home rw,attr2,inode64,noquota
+114 82 253:0 / /y rw,relatime shared:32 - xfs /dev/mapper/centos-root rw,attr2,inode64,noquota
+117 113 0:3 / /x/foo rw,relatime shared:33 - proc proc rw 
+</code></pre>
+
+查看`shared`后面的数字，数字相同的`mount point`属于同一`peer group`
