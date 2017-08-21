@@ -228,7 +228,7 @@ sh-4.2#
 </code></pre>
 
 这里形成了如下的 `peer group`
-<img src="img/peer.png">
+<img src="/img/peer.PNG">
 
 - 在第一个shell中尝试 mount proc
 
