@@ -93,7 +93,10 @@ disqus-shortname: "woosleygithubio-1"
 events:
 
   - image: "/img/career/d.png"
-    date: "May 2017 - Today" 
+    date: "May 2016 - Aug 2017 " 
+
+  - image: "/img/career/d.png"
+    date: "May 2016 - Aug 2017 " 
     description: " not very sure about what is going on"
   - image: "/img/career/b.jpg"
     date: "May 2012 - May 2016"
