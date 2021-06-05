@@ -92,8 +92,9 @@ disqus-shortname: "woosleygithubio-1"
 
 events:
 
-  - image: "/img/career/d.png"
-    date: "May 2016 - Aug 2017 " 
+  - image: "/img/career/pg.jpeg"
+    date: "Jan 2018 - Now" 
+    description: "Technical Platform Director on DevOps, autotesting, CICD, log&monitoring, kubernetes etc."
 
   - image: "/img/career/d.png"
     date: "May 2016 - Aug 2017 " 
